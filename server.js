@@ -6,7 +6,18 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+// Configuración CORS específica
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://justificantes-8jesp27a-neli-zurundis-projects.vercel.app',
+    'https://justificantes.vercel.app',
+    'https://*.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Conexión a la base de datos para Railway
